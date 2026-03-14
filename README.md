@@ -11,6 +11,15 @@ This repo is intentionally separate from the private HabitChain codebase. It cap
 - `demo/`: narrow Next.js app for planning, evidence, and signed actions
 - `docs/`: architecture, demo script, conversation log, and deferred registration notes
 
+## Public Agent File
+
+This repo now includes two agent-facing entrypoints:
+
+- [skill.md](/Users/marcelokopmann/workspace/habitchain-base-workspace/habit-maker-synthesis/skill.md): primary public skill file for Synthesis/OpenClaw-style agents
+- [AGENTS.md](/Users/marcelokopmann/workspace/habitchain-base-workspace/habit-maker-synthesis/AGENTS.md): repo-local instructions for coding agents
+
+If another agent needs to learn how to use Habit Maker, point it at `skill.md` first.
+
 ## Core Product Flow
 
 1. A user describes a health goal.

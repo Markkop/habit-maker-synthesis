@@ -46,6 +46,23 @@ button:disabled {
   opacity: 0.6;
 }
 
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  background: #fff7ef;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button-link-secondary {
+  background: rgba(255, 255, 255, 0.58);
+}
+
 input,
 select,
 textarea {
@@ -71,12 +88,47 @@ pre {
   padding: 2rem;
 }
 
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.brand {
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.topbar-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.topbar-links a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
 .hero {
   display: flex;
   justify-content: space-between;
   gap: 1.5rem;
   align-items: flex-start;
   margin-bottom: 2rem;
+}
+
+.hero-home {
+  align-items: end;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .eyebrow {
@@ -120,6 +172,10 @@ pre {
   gap: 1rem;
 }
 
+.landing-grid {
+  align-items: start;
+}
+
 .card {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -161,6 +217,18 @@ label {
   color: var(--muted);
 }
 
+.number-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.manual-shell {
+  display: grid;
+  gap: 1rem;
+}
+
 .two-col {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -187,5 +255,9 @@ label {
   .page {
     padding: 1rem;
   }
-}
 
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
