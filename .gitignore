@@ -1,0 +1,14 @@
+.DS_Store
+node_modules
+.next
+dist
+coverage
+out
+broadcast
+cache
+lib
+*.tsbuildinfo
+.env
+.env.local
+.env.*.local
+
