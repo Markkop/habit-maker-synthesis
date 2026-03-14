@@ -50,3 +50,18 @@ Excluded from v1:
 
 See [contracts/README.md](/Users/marcelokopmann/workspace/habitchain-base-workspace/habit-maker-synthesis/contracts/README.md) and [docs/demo-script.md](/Users/marcelokopmann/workspace/habitchain-base-workspace/habit-maker-synthesis/docs/demo-script.md).
 
+## Vercel Demo Deploy
+
+Use [scripts/vercel-create-and-deploy-demo.sh](/Users/marcelokopmann/workspace/habitchain-base-workspace/habit-maker-synthesis/scripts/vercel-create-and-deploy-demo.sh) to:
+
+- create a Vercel project if it does not exist
+- link the local `demo/` directory
+- upsert the required demo env vars
+- deploy the `demo/` app
+
+Examples:
+
+```bash
+./scripts/vercel-create-and-deploy-demo.sh --project habit-maker-synthesis-demo
+./scripts/vercel-create-and-deploy-demo.sh --project habit-maker-synthesis-demo --prod
+```
