@@ -11,9 +11,9 @@ import type {
 } from "../lib/types";
 import { decodeCreatedCommitmentId, ensureChain, executePreparedAction, formatEth, getWalletAddress, readCommitment } from "../lib/wallet";
 
-const DEFAULT_AGENT_URL = process.env.NEXT_PUBLIC_AGENT_URL ?? "http://localhost:8787";
-const DEFAULT_CHAIN_ID = Number.parseInt(process.env.NEXT_PUBLIC_CHAIN_ID ?? "84532", 10);
-const DEFAULT_RPC_URL = process.env.NEXT_PUBLIC_RPC_URL ?? "https://sepolia.base.org";
+const DEFAULT_AGENT_URL = process.env.NEXT_PUBLIC_AGENT_URL ?? "/api";
+const DEFAULT_CHAIN_ID = Number.parseInt(process.env.NEXT_PUBLIC_CHAIN_ID ?? "8453", 10);
+const DEFAULT_RPC_URL = process.env.NEXT_PUBLIC_RPC_URL ?? "https://mainnet.base.org";
 const DEFAULT_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ?? "";
 const SESSION_KEY = "habit-maker-demo";
 
@@ -124,13 +124,12 @@ export default function Page() {
   const addMockEvidence = async () => {
     try {
       setError("");
-      const response = await request<{ snapshots: EvidenceSnapshot[] }>("/evidence/mock", {
-        sessionKey: SESSION_KEY,
+      const response = await request<{ snapshot: EvidenceSnapshot }>("/evidence/mock", {
         source,
         observedValue,
         meetsPolicy,
       });
-      setSnapshots(response.snapshots);
+      setSnapshots(current => [...current, response.snapshot]);
       setRecommendation(null);
     } catch (nextError) {
       setError(nextError instanceof Error ? nextError.message : "Unable to add evidence.");

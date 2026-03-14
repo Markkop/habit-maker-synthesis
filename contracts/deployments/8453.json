@@ -1,0 +1,9 @@
+{
+  "chainId": 8453,
+  "contractName": "HabitMakerCommitments",
+  "address": "0x47cf89B3F97bFAF738fa909891b374cDa135d88E",
+  "deployTxHash": "0x924f351f010bc407d55a14b87fa0b04bec30b3d37d4bb685d7297f170a6026e9",
+  "deployedOnBlock": 43331093,
+  "slashRecipient": "0x9ff53CD4BfC0284c4ecC01F168EA0AA5E21a5CC1"
+}
+

@@ -74,6 +74,15 @@ run_vercel() {
   "${VERCEL_CMD[@]}" "$@"
 }
 
+run_demo_vercel() {
+  if [[ ${#VERCEL_FLAGS[@]} -gt 0 ]]; then
+    "${VERCEL_CMD[@]}" --cwd "$DEMO_DIR" "$@" "${VERCEL_FLAGS[@]}"
+    return
+  fi
+
+  "${VERCEL_CMD[@]}" --cwd "$DEMO_DIR" "$@"
+}
+
 read_env_file_value() {
   local file="$1"
   local key="$2"
@@ -116,12 +125,12 @@ upsert_env() {
   local value="$2"
   local env="$3"
 
-  run_vercel env rm "$name" "$env" --yes >/dev/null 2>&1 || true
+  run_demo_vercel env rm "$name" "$env" --yes >/dev/null 2>&1 || true
 
   if [[ "$env" == "preview" ]]; then
-    printf "%s" "$value" | run_vercel env add "$name" "$env" "" >/dev/null
+    printf "%s" "$value" | run_demo_vercel env add "$name" "$env" "" >/dev/null
   else
-    printf "%s" "$value" | run_vercel env add "$name" "$env" >/dev/null
+    printf "%s" "$value" | run_demo_vercel env add "$name" "$env" >/dev/null
   fi
 
   echo "Updated $name for $env"
@@ -138,7 +147,7 @@ else
   echo "Using existing Vercel project: $PROJECT_NAME"
 fi
 
-run_vercel link --cwd "$DEMO_DIR" --yes --project "$PROJECT_NAME" >/dev/null
+run_demo_vercel link --yes --project "$PROJECT_NAME" >/dev/null
 
 REQUIRED_ENVS=(
   NEXT_PUBLIC_AGENT_URL
@@ -172,7 +181,7 @@ done
 
 echo "Deploying demo to Vercel ($TARGET)"
 if [[ "$TARGET" == "production" ]]; then
-  run_vercel deploy --cwd "$DEMO_DIR" --yes --prod
+  run_demo_vercel deploy --yes --prod
 else
-  run_vercel deploy --cwd "$DEMO_DIR" --yes --target preview
+  run_demo_vercel deploy --yes --target preview
 fi

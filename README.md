@@ -50,6 +50,15 @@ Excluded from v1:
 
 See [contracts/README.md](/Users/marcelokopmann/workspace/habitchain-base-workspace/habit-maker-synthesis/contracts/README.md) and [docs/demo-script.md](/Users/marcelokopmann/workspace/habitchain-base-workspace/habit-maker-synthesis/docs/demo-script.md).
 
+## Live Deployment
+
+Current Base mainnet deployment:
+
+- contract: `HabitMakerCommitments`
+- chain: `8453`
+- address: `0x47cf89B3F97bFAF738fa909891b374cDa135d88E`
+- tx: `0x924f351f010bc407d55a14b87fa0b04bec30b3d37d4bb685d7297f170a6026e9`
+
 ## Vercel Demo Deploy
 
 Use [scripts/vercel-create-and-deploy-demo.sh](/Users/marcelokopmann/workspace/habitchain-base-workspace/habit-maker-synthesis/scripts/vercel-create-and-deploy-demo.sh) to:
