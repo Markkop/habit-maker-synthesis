@@ -6,9 +6,7 @@ coverage
 out
 broadcast
 cache
-lib
 *.tsbuildinfo
 .env
 .env.local
 .env.*.local
-
