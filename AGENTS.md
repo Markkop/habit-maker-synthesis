@@ -1,6 +1,6 @@
 # Agent Instructions
 
-This repo exposes a public agent entrypoint in [skill.md](/Users/marcelokopmann/workspace/habitchain-base-workspace/habit-maker-synthesis/skill.md).
+This repo exposes a public agent entrypoint in [skill.md](skill.md).
 
 If you are an agent operating against this repo:
 
@@ -15,6 +15,22 @@ If you are an agent operating against this repo:
 - live contract: `0x47cf89B3F97bFAF738fa909891b374cDa135d88E` on Base mainnet
 - demo UI: `demo/app/page.tsx`
 - server routes: `demo/app/api/*`
+- OpenClaw workspace: `openclaw/`
+- MCP server: `openclaw/mcp-server/`
+- HTTP server: `openclaw/http-server/`
+- shared core library: `openclaw/lib/`
+
+## OpenClaw Agent
+
+The `openclaw/` directory contains a full OpenClaw workspace for running HabitCoach as a standalone agent. It includes:
+
+- workspace files (SOUL.md, TOOLS.md, SKILLS.md, HEARTBEAT.md, etc.)
+- an MCP server exposing 6 tools for OpenClaw integration
+- an HTTP server preserving the REST API for agent-to-agent interop
+- wallet setup guides (petty cash, MetaMask delegation, Zodiac Safe)
+- Synthesis hackathon submission guide
+
+See `openclaw/README.md` for setup instructions.
 
 ## Safety
 

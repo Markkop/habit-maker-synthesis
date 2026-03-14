@@ -7,9 +7,10 @@ This repo is intentionally separate from the private HabitChain codebase. It cap
 ## Project Shape
 
 - `contracts/`: minimal Foundry contract and tests
-- `agent/`: standalone TypeScript HTTP service
-- `demo/`: narrow Next.js app for planning, evidence, and signed actions
+- `agent/`: standalone TypeScript HTTP service (legacy)
+- `demo/`: Next.js app with API routes; root displays this README
 - `docs/`: architecture, demo script, conversation log, and deferred registration notes
+- `openclaw/`: OpenClaw agent workspace (MCP server, HTTP server, shared core library, wallet guides)
 
 ## Public Agent File
 
@@ -50,14 +51,24 @@ Excluded from v1:
 - autonomous signing
 - Synthesis registration automation
 
-## Run Order
+## Run Order (Demo Mode)
 
 1. Deploy the contract locally or on Base Sepolia.
 2. Start the `agent/` service.
 3. Start the `demo/` app.
-4. Use the demo to plan a commitment and sign actions.
+4. Use the demo API routes to plan a commitment and interact with the agent.
 
-See [contracts/README.md](/Users/marcelokopmann/workspace/habitchain-base-workspace/habit-maker-synthesis/contracts/README.md) and [docs/demo-script.md](/Users/marcelokopmann/workspace/habitchain-base-workspace/habit-maker-synthesis/docs/demo-script.md).
+See [contracts/README.md](contracts/README.md) and [docs/demo-script.md](docs/demo-script.md).
+
+## Run Order (OpenClaw Agent Mode)
+
+1. Install OpenClaw: `npm install -g openclaw`
+2. Configure `openclaw/.env` (copy from `openclaw/.env.example`)
+3. Install MCP server deps: `cd openclaw/mcp-server && npm install && npm run build`
+4. Start the gateway: `openclaw gateway start`
+5. (Optional) Start the HTTP server for agent-to-agent interop: `cd openclaw/http-server && npm install && npm start`
+
+See [openclaw/README.md](openclaw/README.md) for full setup.
 
 ## Live Deployment
 

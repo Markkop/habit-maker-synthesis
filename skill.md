@@ -15,7 +15,7 @@ Habit Maker is a small system with three parts:
 
 - `contracts/`: a minimal ETH-backed commitment contract
 - `agent/`: a planning and recommendation service
-- `demo/`: a UI that calls the agent and lets the human sign transactions
+- `demo/`: Next.js app with API routes and root page showing the README
 
 The system is intentionally small. It is not a full health platform and it is not a custodial agent.
 
@@ -118,13 +118,13 @@ When the human asks for help:
 4. Tell the human that creating the commitment requires a wallet signature.
 5. When evidence exists, call `recommend-action`.
 6. Explain why the recommendation is justified or why no action should be taken.
-7. If a contract call is needed, show the prepared action and ask the human to sign it in the app.
+7. If a contract call is needed, show the prepared action and ask the human to sign it via their wallet.
 
 ## Good Output Pattern
 
 Use concise language like:
 
-> I translated your goal into a weekly commitment with a target of 3 check-ins and a suggested stake of 0.02 ETH. The strongest deterministic signal here is workout evidence. If you want to proceed, sign the `createCommitment` transaction in the demo.
+> I translated your goal into a weekly commitment with a target of 3 check-ins and a suggested stake of 0.02 ETH. The strongest deterministic signal here is workout evidence. If you want to proceed, sign the `createCommitment` transaction in your wallet.
 
 After evidence:
 
@@ -148,6 +148,47 @@ curl -sS https://habit-maker-synthesis-demo.vercel.app/api/evidence/mock \
   -d '{"source":"workouts","observedValue":"completed workout","meetsPolicy":true}'
 ```
 
+## OpenClaw Agent Mode
+
+Habit Maker can also run as a standalone OpenClaw agent. The `openclaw/` directory contains a full workspace:
+
+- `SOUL.md` — coach persona and values
+- `TOOLS.md` — contract reference and environment
+- `SKILLS.md` — evm-wallet + habit-maker-tools MCP server
+- `HEARTBEAT.md` — proactive coaching loop (window nudges, evidence checks)
+- `BOOT.md` — startup verification and Synthesis registration
+
+The agent exposes the same capabilities via two interfaces:
+
+- **MCP Server** (`openclaw/mcp-server/`) — for OpenClaw gateway integration
+- **HTTP Server** (`openclaw/http-server/`) — for agent-to-agent interop via REST
+
+Both share the same core library (`openclaw/lib/`).
+
+### Wallet Autonomy
+
+Three tiers for agent wallet setup (user's choice):
+
+1. **Petty Cash** — small agent-controlled wallet, fund with a few cents of ETH
+2. **MetaMask Delegation (ERC-7715)** — scoped permissions via smart account
+3. **ClawSig (Zodiac Safe)** — bounded autonomy through Safe Roles Modifier
+
+See `openclaw/docs/` for setup guides.
+
+### Standalone HTTP API
+
+When running the HTTP server (`openclaw/http-server/`), the same tools are available at:
+
+- `POST /plan-commitment`
+- `POST /evidence/mock`
+- `POST /recommend-action`
+- `POST /prepare-action`
+- `GET  /commitment/:id`
+- `GET  /commitment/:id/window`
+- `GET  /health`
+
+Default port: 8787. Configure via `PORT` env var.
+
 ## Repo References
 
 - `README.md`
@@ -155,4 +196,7 @@ curl -sS https://habit-maker-synthesis-demo.vercel.app/api/evidence/mock \
 - `docs/demo-script.md`
 - `contracts/src/HabitMakerCommitments.sol`
 - `demo/app/page.tsx`
+- `openclaw/` — OpenClaw agent workspace
+- `openclaw/docs/contract-reference.md` — full ABI reference
+- `openclaw/docs/synthesis-submission.md` — Synthesis hackathon guide
 

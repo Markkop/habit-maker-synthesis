@@ -1,0 +1,35 @@
+{
+  "agents": {
+    "list": [
+      {
+        "id": "habit-coach",
+        "identity": {
+          "name": "HabitCoach",
+          "emoji": "💪"
+        }
+      }
+    ]
+  },
+  "channels": {
+    "telegram": {
+      "botToken": "${TELEGRAM_BOT_TOKEN}"
+    },
+    "terminal": {}
+  },
+  "mcpServers": {
+    "habit-maker-tools": {
+      "command": "node",
+      "args": ["openclaw/mcp-server/dist/index.js"],
+      "transport": "stdio"
+    }
+  },
+  "tools": {
+    "allow": [
+      "evm-wallet",
+      "habit-maker-tools",
+      "web_search",
+      "read_file",
+      "execute_shell"
+    ]
+  }
+}
